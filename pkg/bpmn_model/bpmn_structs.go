@@ -2,11 +2,11 @@ package bpmnmodel
 
 import "github.com/FastGeo/bpmn-model/pkg/bpmn_model/extensions"
 
-// TDefinitions is the BPMN XML representation of a definitions
+// TDefinitions 承载BPMN XML的根节点，bpmn:definitions
 type TDefinitions struct {
-	ID                 string     `xml:"id,attr"`
-	Name               string     `xml:"name,attr"`
-	TargetNamespace    string     `xml:"targetNamespace,attr"`
+	ID                 string     `xml:"id,attr"`   // ID 流程定义
+	Name               string     `xml:"name,attr"` // Name 流程定义名称
+	TargetNamespace    string     `xml:"targetNamespace,attr"` // xml
 	ExpressionLanguage string     `xml:"expressionLanguage,attr"`
 	TypeLanguage       string     `xml:"typeLanguage,attr"`
 	Exporter           string     `xml:"exporter,attr"`
@@ -15,7 +15,7 @@ type TDefinitions struct {
 	Messages           []TMessage `xml:"message"`
 }
 
-// TProcess the BPMN XML representation of a process definitions
+// TProcess xml流程定义节点
 type TProcess struct {
 	ID                           string                    `xml:"id,attr"`
 	Name                         string                    `xml:"name,attr"`
