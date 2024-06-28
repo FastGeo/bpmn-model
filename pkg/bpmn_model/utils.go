@@ -5,6 +5,7 @@ import (
 	"strings"
 )
 
+// FindSequenceFlows returns a list of sequence flows, that match the given IDs
 func FindSequenceFlows(sequenceFlows *[]TSequenceFlow, ids []string) (ret []TSequenceFlow) {
 	for _, flow := range *sequenceFlows {
 		for _, id := range ids {
@@ -27,6 +28,7 @@ func FindSequenceFlow(sequenceFlows *[]TSequenceFlow, sourceID string, targetID 
 	return result
 }
 
+// FindBaseElementsByID returns a list of base elements, that match the given ID
 func FindBaseElementsByID(definitions *TDefinitions, id string) (elements []*BaseElement) {
 	appender := func(element *BaseElement) {
 		if (*element).GetID() == id {

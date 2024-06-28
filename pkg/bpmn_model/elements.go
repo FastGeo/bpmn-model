@@ -15,6 +15,7 @@ const (
 	IntermediateCatchEvent ElementType = "INTERMEDIATE_CATCH_EVENT"
 	IntermediateThrowEvent ElementType = "INTERMEDIATE_THROW_EVENT"
 	EventBasedGateway      ElementType = "EVENT_BASED_GATEWAY"
+	InclusiveGateway       ElementType = "INCLUSIVE_GATEWAY"
 
 	SequenceFlow ElementType = "SEQUENCE_FLOW"
 
@@ -45,6 +46,7 @@ type GatewayElement interface {
 	BaseElement
 	IsParallel() bool
 	IsExclusive() bool
+	IsInclusive() bool
 }
 
 func (startEvent TStartEvent) GetID() string {
@@ -194,6 +196,10 @@ func (parallelGateway TParallelGateway) IsExclusive() bool {
 	return false
 }
 
+func (parallelGateway TParallelGateway) IsInclusive() bool {
+	return false
+}
+
 func (exclusiveGateway TExclusiveGateway) GetID() string {
 	return exclusiveGateway.ID
 }
@@ -219,6 +225,10 @@ func (exclusiveGateway TExclusiveGateway) IsParallel() bool {
 }
 func (exclusiveGateway TExclusiveGateway) IsExclusive() bool {
 	return true
+}
+
+func (exclusiveGateway TExclusiveGateway) IsInclusive() bool {
+	return false
 }
 
 func (intermediateCatchEvent TIntermediateCatchEvent) GetID() string {
@@ -271,6 +281,10 @@ func (eventBasedGateway TEventBasedGateway) IsExclusive() bool {
 	return true
 }
 
+func (eventBasedGateway TEventBasedGateway) IsInclusive() bool {
+	return false
+}
+
 // -------------------------------------------------------------------------
 
 func (intermediateThrowEvent TIntermediateThrowEvent) GetID() string {
@@ -292,4 +306,36 @@ func (intermediateThrowEvent TIntermediateThrowEvent) GetOutgoingAssociation() [
 
 func (intermediateThrowEvent TIntermediateThrowEvent) GetType() ElementType {
 	return IntermediateThrowEvent
+}
+
+func (inclusiveGateway TInclusiveGateway) GetID() string {
+	return inclusiveGateway.ID
+}
+
+func (inclusiveGateway TInclusiveGateway) GetName() string {
+	return inclusiveGateway.Name
+}
+
+func (inclusiveGateway TInclusiveGateway) GetIncomingAssociation() []string {
+	return inclusiveGateway.IncomingAssociation
+}
+
+func (inclusiveGateway TInclusiveGateway) GetOutgoingAssociation() []string {
+	return inclusiveGateway.OutgoingAssociation
+}
+
+func (inclusiveGateway TInclusiveGateway) GetType() ElementType {
+	return InclusiveGateway
+}
+
+func (inclusiveGateway TInclusiveGateway) IsParallel() bool {
+	return false
+}
+
+func (inclusiveGateway TInclusiveGateway) IsExclusive() bool {
+	return false
+}
+
+func (inclusiveGateway TInclusiveGateway) IsInclusive() bool {
+	return true
 }

@@ -2,10 +2,10 @@ package bpmnmodel
 
 import "github.com/FastGeo/bpmn-model/pkg/bpmn_model/extensions"
 
-// TDefinitions 承载BPMN XML的根节点，bpmn:definitions
+// TDefinitions is the BPMN XML representation of a BPMN model
 type TDefinitions struct {
-	ID                 string     `xml:"id,attr"`   // ID 流程定义
-	Name               string     `xml:"name,attr"` // Name 流程定义名称
+	ID                 string     `xml:"id,attr"`              // ID 流程定义
+	Name               string     `xml:"name,attr"`            // Name 流程定义名称
 	TargetNamespace    string     `xml:"targetNamespace,attr"` // xml
 	ExpressionLanguage string     `xml:"expressionLanguage,attr"`
 	TypeLanguage       string     `xml:"typeLanguage,attr"`
@@ -15,7 +15,7 @@ type TDefinitions struct {
 	Messages           []TMessage `xml:"message"`
 }
 
-// TProcess xml流程定义节点
+// TProcess is the BPMN XML representation of a process
 type TProcess struct {
 	ID                           string                    `xml:"id,attr"`
 	Name                         string                    `xml:"name,attr"`
@@ -67,6 +67,7 @@ type TEndEvent struct {
 	OutgoingAssociation []string `xml:"outgoing"`
 }
 
+// TServiceTask BPMN Service Task
 type TServiceTask struct {
 	ID                  string                     `xml:"id,attr"`
 	Name                string                     `xml:"name,attr"`
@@ -82,6 +83,7 @@ type TServiceTask struct {
 	TaskDefinition      extensions.TTaskDefinition `xml:"extensionElements>taskDefinition"`
 }
 
+// TUserTask BPMN User Task
 type TUserTask struct {
 	ID                   string                           `xml:"id,attr"`
 	Name                 string                           `xml:"name,attr"`
@@ -92,6 +94,7 @@ type TUserTask struct {
 	AssignmentDefinition extensions.TAssignmentDefinition `xml:"extensionElements>assignmentDefinition"`
 }
 
+// TParallelGateway BPMN Parallel Gateway
 type TParallelGateway struct {
 	ID                  string   `xml:"id,attr"`
 	Name                string   `xml:"name,attr"`
@@ -99,6 +102,7 @@ type TParallelGateway struct {
 	OutgoingAssociation []string `xml:"outgoing"`
 }
 
+// TExclusiveGateway BPMN Exclusive Gateway
 type TExclusiveGateway struct {
 	ID                  string   `xml:"id,attr"`
 	Name                string   `xml:"name,attr"`
@@ -106,6 +110,7 @@ type TExclusiveGateway struct {
 	OutgoingAssociation []string `xml:"outgoing"`
 }
 
+// TIntermediateCatchEvent BPMN Intermediate Catch Event
 type TIntermediateCatchEvent struct {
 	ID                     string                  `xml:"id,attr"`
 	Name                   string                  `xml:"name,attr"`
@@ -118,6 +123,7 @@ type TIntermediateCatchEvent struct {
 	Output                 []extensions.TIoMapping `xml:"extensionElements>ioMapping>output"`
 }
 
+// TIntermediateThrowEvent BPMN Intermediate Throw Event
 type TIntermediateThrowEvent struct {
 	ID                  string                  `xml:"id,attr"`
 	Name                string                  `xml:"name,attr"`
@@ -126,6 +132,7 @@ type TIntermediateThrowEvent struct {
 	Output              []extensions.TIoMapping `xml:"extensionElements>ioMapping>output"`
 }
 
+// TEventBasedGateway BPMN Event Based Gateway
 type TEventBasedGateway struct {
 	ID                  string   `xml:"id,attr"`
 	Name                string   `xml:"name,attr"`
@@ -133,26 +140,39 @@ type TEventBasedGateway struct {
 	OutgoingAssociation []string `xml:"outgoing"`
 }
 
+// TMessageEventDefinition BPMN Message Event Definition
 type TMessageEventDefinition struct {
 	ID         string `xml:"id,attr"`
 	MessageRef string `xml:"messageRef,attr"`
 }
 
+// TTimerEventDefinition BPMN Timer Event Definition
 type TTimerEventDefinition struct {
 	ID           string        `xml:"id,attr"`
 	TimeDuration TTimeDuration `xml:"timeDuration"`
 }
 
+// TLinkEventDefinition BPMN Link Event Definition
 type TLinkEventDefinition struct {
 	ID   string `xml:"id,attr"`
 	Name string `xml:"name,attr"`
 }
 
+// TMessage BPMN Message
 type TMessage struct {
 	ID   string `xml:"id,attr"`
 	Name string `xml:"name,attr"`
 }
 
+// TTimeDuration BPMN Time Duration
 type TTimeDuration struct {
 	XMLText string `xml:",innerxml"`
+}
+
+// TInclusiveGateway BPMN Inclusive Gateway
+type TInclusiveGateway struct {
+	ID                  string   `xml:"id,attr"`
+	Name                string   `xml:"name,attr"`
+	IncomingAssociation []string `xml:"incoming"`
+	OutgoingAssociation []string `xml:"outgoing"`
 }
